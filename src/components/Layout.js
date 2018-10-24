@@ -1,15 +1,23 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-
-import Navbar from '../components/Navbar'
-import './all.sass'
-
+import React from "react";
+import Helmet from "react-helmet";
+import Header from "./Header";
+import Footer from "./Footer";
+import "./app.scss";
 const TemplateWrapper = ({ children }) => (
-  <div>
-    <Helmet title="Home | Gatsby + Netlify CMS" />
-    <Navbar />
-    <div>{children}</div>
-  </div>
-)
+  <>
+    <Helmet title="Drankthology" />
+    <Header />
+    <main>{children}</main>
+    <Footer />
+  </>
+);
+export default TemplateWrapper;
 
-export default TemplateWrapper
+/*
+<article> - for detail page, but not listings
+
+machine readable date value for the googles:
+   <time datetime="2005-10-08T15:13" pubdate>
+    3:13pm on October 8th, 2005
+   </time>
+*/
