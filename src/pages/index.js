@@ -2,14 +2,9 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 import Layout from "../components/Layout";
 import sugar from "../img/sugar.png";
-
 export default class IndexPage extends React.Component {
   render() {
-    const { data } = this.props;
-    const { edges: posts } = data.allMarkdownRemark; // wat?
-
-    console.log(data);
-    console.log(JSON.stringify(data));
+    const { edges: posts } = this.props.data.allMarkdownRemark; // wat:some sick filtery thing?
 
     return (
       <Layout>
@@ -43,10 +38,15 @@ export default class IndexPage extends React.Component {
     );
   }
 }
-
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    # All markdown items
+    allMarkdownRemark(
+      # Filter out those within /posts
+      filter: { fileAbsolutePath: { regex: "/posts/" } }
+      # Sort by their frontmatter date values
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
       edges {
         node {
           # excerpt(pruneLength: 200)
@@ -54,10 +54,12 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          # Tell it which things to grab from the md files
           frontmatter {
             title
+            content
             templateKey
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "Do MMM YYYY")
           }
         }
       }

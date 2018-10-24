@@ -41,11 +41,6 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {
-          label: "Template Key",
-          name: "templateKey",
-          widget: "hidden",
-          default: "post",
-        }
+      - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Content", name: "content", widget: "markdown" }
