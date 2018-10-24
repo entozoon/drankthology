@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Layout from "../components/Layout";
+import sugar from "../img/sugar.png";
 
 export default class IndexPage extends React.Component {
   render() {
@@ -17,6 +18,8 @@ export default class IndexPage extends React.Component {
               style={{ border: "1px solid #eaecee", padding: "2em 4em" }}
               key={post.id}
             >
+              I believe gatsby can crop and resize images, which will be useful
+              <img src={sugar} />
               <p>
                 <Link className="has-text-primary" to={post.fields.slug}>
                   {post.frontmatter.title}
