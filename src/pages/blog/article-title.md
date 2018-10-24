@@ -3,9 +3,6 @@ templateKey: blog-post
 title: "Post Title"
 date: 2017-01-04T15:04:10.000Z
 description: "Trying to sack most of this off tbh"
-tags:
-  - brewing
-  - chemex
 ---
 
 ![chemex](/img/chemex.jpg)
