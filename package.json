@@ -35,7 +35,7 @@
     "start": "npm run develop",
     "clean": "rimraf .cache public",
     "build": "npm run clean && gatsby build",
-    "develop": "npm run clean && gatsby develop --open",
+    "develop": "npm run clean && gatsby develop --open --port 1337",
     "serve": "gatsby serve",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -2,9 +2,9 @@ const _ = require("lodash");
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 
+// Runs once when site loads. Gather up aaaall the data
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
-
   return graphql(`
     {
       allMarkdownRemark(limit: 1000) {
@@ -27,20 +27,29 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(result.errors);
     }
 
-    const posts = result.data.allMarkdownRemark.edges;
-
-    posts.forEach(edge => {
+    // Run through all entries in the CMS
+    result.data.allMarkdownRemark.edges.forEach(edge => {
       const id = edge.node.id;
-      createPage({
-        path: edge.node.fields.slug,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-        ),
-        // additional data can be passed via context
-        context: {
-          id
-        }
-      });
+      console.log(edge.node);
+      //
+      // Post pages
+      // If slug begins with '/posts/' then it's a post page
+      if (edge.node.fields.slug.slice(0, "/posts/".length) === "/posts/") {
+        createPage({
+          path: edge.node.fields.slug,
+          component: path.resolve(
+            `src/templates/post.js`
+            // Original technique with fm keys, but.. I don't like it:
+            // `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+          ),
+          // additional data can be passed via context
+          context: {
+            id
+          }
+        });
+      } else {
+        console.log("Hasn't created a page for this!");
+      }
     });
 
     // Tag pages:
