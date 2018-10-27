@@ -43,13 +43,13 @@ export default ({ location, data }) => {
 // `;
 
 // The data returned by this query is injected into the components .data prop above
-export const query = graphql`
-  query BlogPostByID($id: String!) {
-    # A single markdown thing (not all)
-    # this needs to fuckin.. get the post by id, but i'm not sure if it's got the id here ready to use? or.. how to pass it? fricking. black box gatsby magic godamnit
-    markdownRemark(id: { eq: $id }) {
-      id
-      html
-    }
-  }
-`;
+// export const query = graphql`
+//   query BlogPostByID($id: String!) {
+//     # A single markdown thing (not all)
+//     # this needs to fuckin.. get the post by id, but i'm not sure if it's got the id here ready to use? or.. how to pass it? fricking. black box gatsby magic godamnit
+//     markdownRemark(id: { eq: $id }) {
+//       id
+//       html
+//     }
+//   }
+// `;

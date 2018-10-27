@@ -2,9 +2,9 @@
 
 Precursor to energydrunk.com and dramthology.com
 
-https://drunkthology.netlify.com/
+https://drankthology.netlify.com/
 
-https://drunkthology.netlify.com/admin
+https://drankthology.netlify.com/admin
 
 ## Tech
 
@@ -15,11 +15,11 @@ https://drunkthology.netlify.com/admin
 
 ## How does it work?
 
-In /admin, if you edit an article, it changes the corresponding .md markdown file by pushing to the repo via magical netlify hooks.
+In `/admin`, if you edit an article, it changes the corresponding .md markdown file by pushing to the repo via magical netlify hooks.
 
 If you're working locally, to receive these changes you will need to pull again and restart npm.
 
-NB: You can also manually edit the .md files yourself (and restart npm)
+NB: You can also manually edit the `.md` files yourself (and restart npm)
 
 ## Develop
 
