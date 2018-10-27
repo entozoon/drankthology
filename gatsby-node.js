@@ -30,7 +30,8 @@ exports.createPages = ({ actions, graphql }) => {
     // Run through all entries in the CMS
     result.data.allMarkdownRemark.edges.forEach(edge => {
       const id = edge.node.id;
-      console.log(edge.node);
+      console.log("*************** gatsby-node ******************");
+      console.log(edge.node.id);
       //
       // Post pages
       // If slug begins with '/posts/' then it's a post page

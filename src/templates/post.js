@@ -2,9 +2,11 @@ import React from "react";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 
-export default ({ location, data }) => {
+export default ({ location, data, id, html }) => {
   console.log(location);
   console.log(data);
+  console.log(html);
+  console.log(id);
   return (
     <Layout>
       <h1>Post</h1>
@@ -47,6 +49,7 @@ export default ({ location, data }) => {
 //   query BlogPostByID($id: String!) {
 //     # A single markdown thing (not all)
 //     # this needs to fuckin.. get the post by id, but i'm not sure if it's got the id here ready to use? or.. how to pass it? fricking. black box gatsby magic godamnit
+//     # i heard that it's passed from gatsby-node! (tbh maybe time to follow a tutorial)
 //     markdownRemark(id: { eq: $id }) {
 //       id
 //       html

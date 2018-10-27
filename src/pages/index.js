@@ -8,7 +8,6 @@ export default class IndexPage extends React.Component {
 
     return (
       <Layout>
-        <h1>Lorem</h1>
         {posts.map(({ node: post }) => (
           <div
             className="content"
