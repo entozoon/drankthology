@@ -79,15 +79,18 @@ exports.createPages = ({ actions, graphql }) => {
   });
 };
 
+// Called whenever a new node is created or updated
+// https://www.gatsbyjs.org/tutorial/part-seven/
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
+    // Create a slug and add it to the markdownremark nodes
+    const slug = createFilePath({ node, getNode });
     createNodeField({
-      name: `slug`,
       node,
-      value
+      name: `slug`,
+      value: slug
     });
   }
 };
