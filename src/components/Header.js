@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "../components/Nav";
-import { StaticQuery, Link, graphql } from "gatsby";
+import { StaticQuery } from "gatsby";
 
 export default data => {
   return (
@@ -15,7 +15,6 @@ export default data => {
         }
       `}
       render={data => {
-        console.log("boom", data);
         return (
           <header>
             <h1>{data.site.siteMetadata.title}</h1>

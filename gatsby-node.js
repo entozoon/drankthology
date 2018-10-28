@@ -34,7 +34,7 @@ exports.createPages = ({ actions, graphql }) => {
       console.log(edge.node.id);
       //
       // Post pages
-      // If slug begins with '/posts/' then it's a post page
+      // If slug begins with '/posts/' then use psot.js
       if (edge.node.fields.slug.slice(0, "/posts/".length) === "/posts/") {
         createPage({
           path: edge.node.fields.slug,

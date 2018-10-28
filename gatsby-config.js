@@ -1,4 +1,4 @@
-// NB: Restart npm after modifying
+// NB: Restart npm if adding new fields!
 module.exports = {
   siteMetadata: {
     title: "Drankthology",
@@ -9,6 +9,7 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
     {
+      // This source plugin builds in the data in a queryable way
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/src/pages`,
@@ -25,6 +26,7 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
+      // This transformer plugin converts it to useful objects
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: []
