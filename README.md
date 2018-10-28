@@ -2,9 +2,15 @@
 
 Precursor to energydrunk.com and dramthology.com
 
+## Useful domains
+
 https://drankthology.netlify.com/
 
 https://drankthology.netlify.com/admin
+
+Debugging data:
+
+http://localhost:1337/___graphql
 
 ## Tech
 

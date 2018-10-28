@@ -1,21 +1,29 @@
 import React from "react";
 import Nav from "../components/Nav";
+import { StaticQuery, Link, graphql } from "gatsby";
 
 export default data => {
-  console.log(data);
   return (
-    <header>
-      {/* <h1>{data.siteMetadata.title}</h1> */}
-      <Nav />
-    </header>
+    <StaticQuery
+      query={graphql`
+        query {
+          site {
+            siteMetadata {
+              title
+            }
+          }
+        }
+      `}
+      render={data => {
+        console.log("boom", data);
+        return (
+          <header>
+            <h1>{data.site.siteMetadata.title}</h1>
+            <Nav />
+          </header>
+        );
+      }}
+    />
   );
 };
-export const pageQuery = graphql`
-  query getTitle {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
+// Can't do a typical graphql query here because this isn't a page component as such. but static queries do the trick

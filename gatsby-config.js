@@ -1,8 +1,11 @@
+// NB: Restart npm after modifying
 module.exports = {
   siteMetadata: {
-    title: "Drankthology"
+    title: "Drankthology",
+    otherStuff: "Static data can be chucked here"
   },
   plugins: [
+    // If we wanted to source data from a bunch of json files, we'd load in gatsby-source-filesystem here
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
     {
