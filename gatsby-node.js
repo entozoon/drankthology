@@ -14,68 +14,68 @@ exports.createPages = ({ actions, graphql }) => {
             fields {
               slug
             }
-            frontmatter {
-              templateKey
-            }
           }
         }
       }
     }
   `).then(result => {
-    if (result.errors) {
-      result.errors.forEach(e => console.error(e.toString()));
-      return Promise.reject(result.errors);
-    }
-
-    // Run through all entries in the CMS
-    result.data.allMarkdownRemark.edges.forEach(edge => {
-      const id = edge.node.id;
-      console.log("*************** gatsby-node ******************");
-      console.log(edge.node.id);
-      //
-      // Post pages
-      // If slug begins with '/posts/' then use psot.js
-      if (edge.node.fields.slug.slice(0, "/posts/".length) === "/posts/") {
-        createPage({
-          path: edge.node.fields.slug,
-          component: path.resolve(
-            `src/templates/post.js`
-            // Original technique with fm keys, but.. I don't like it:
-            // `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
-          ),
-          // additional data can be passed via context
-          context: {
-            id
-          }
-        });
-      } else {
-        console.log("Hasn't created a page for this!");
+    return new Promise((resolve, reject) => {
+      if (result.errors) {
+        result.errors.forEach(e => console.error(e.toString()));
+        reject(result.errors);
       }
+
+      // Run through all entries in the CMS
+      result.data.allMarkdownRemark.edges.forEach(edge => {
+        const { id } = edge.node;
+        console.log("*************** gatsby-node ******************");
+        console.log(id);
+        //
+        // Post pages
+        // If slug begins with '/posts/' then use psot.js
+        if (edge.node.fields.slug.slice(0, "/posts/".length) === "/posts/") {
+          createPage({
+            path: edge.node.fields.slug,
+            component: path.resolve(
+              `src/templates/post.js`
+              // Original technique with fm keys, but.. I don't like it:
+              // `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+            ),
+            // additional data can be passed via context
+            context: {
+              id
+            }
+          });
+        } else {
+          console.log("Hasn't created a page for this!");
+        }
+      });
+
+      // Tag pages:
+      // let tags = [];
+      // // Iterate through each post, putting all found tags into `tags`
+      // posts.forEach(edge => {
+      //   if (_.get(edge, `node.frontmatter.tags`)) {
+      //     tags = tags.concat(edge.node.frontmatter.tags);
+      //   }
+      // });
+      // // Eliminate duplicate tags
+      // tags = _.uniq(tags);
+
+      // // Make tag pages
+      // tags.forEach(tag => {
+      //   const tagPath = `/tags/${_.kebabCase(tag)}/`;
+
+      //   createPage({
+      //     path: tagPath,
+      //     component: path.resolve(`src/templates/tags.js`),
+      //     context: {
+      //       tag
+      //     }
+      //   });
+      // });
+      resolve();
     });
-
-    // Tag pages:
-    // let tags = [];
-    // // Iterate through each post, putting all found tags into `tags`
-    // posts.forEach(edge => {
-    //   if (_.get(edge, `node.frontmatter.tags`)) {
-    //     tags = tags.concat(edge.node.frontmatter.tags);
-    //   }
-    // });
-    // // Eliminate duplicate tags
-    // tags = _.uniq(tags);
-
-    // // Make tag pages
-    // tags.forEach(tag => {
-    //   const tagPath = `/tags/${_.kebabCase(tag)}/`;
-
-    //   createPage({
-    //     path: tagPath,
-    //     component: path.resolve(`src/templates/tags.js`),
-    //     context: {
-    //       tag
-    //     }
-    //   });
-    // });
   });
 };
 
@@ -85,8 +85,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    // Create a slug and add it to the markdownremark nodes
-    const slug = createFilePath({ node, getNode });
+    // Create a slug and add it to the markdownRemark nodes
+    const slug = createFilePath({ node, getNode }); // basePath: `pages`
     createNodeField({
       node,
       name: `slug`,

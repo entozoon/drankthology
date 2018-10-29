@@ -30,6 +30,7 @@ module.exports = {
         path: `${__dirname}/static/img`
       }
     },
+    "gatsby-remark-copy-linked-files",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
@@ -37,6 +38,12 @@ module.exports = {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: []
+      }
+    },
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 1080
       }
     },
     {

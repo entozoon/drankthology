@@ -1,7 +1,7 @@
 import CMS from "netlify-cms";
 
 import PagePreview from "./preview-templates/PagePreview";
-import BlogPostPreview from "./preview-templates/BlogPostPreview";
+import PostPreview from "./preview-templates/PostPreview";
 
 CMS.registerPreviewTemplate("page", PagePreview);
-CMS.registerPreviewTemplate("blog", BlogPostPreview);
+CMS.registerPreviewTemplate("post", PostPreview);

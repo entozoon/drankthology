@@ -12,6 +12,7 @@ export default class IndexPage extends React.Component {
       <Layout>
         {posts.map(({ node: post }) => {
           console.log(post);
+          // this is vile, rewrite it as an component, come on
           const { id, excerpt } = post;
           const { slug } = post.fields;
           const { title, date, image } = post.frontmatter;

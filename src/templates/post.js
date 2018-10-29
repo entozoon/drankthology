@@ -2,17 +2,17 @@ import React from "react";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 
-export default ({ location, data, id, html }) => {
+export default ({ location, data, id }) => {
   console.log("********************");
-  console.log(location);
   console.log(data);
-  console.log(html);
-  console.log(id);
   console.log("********************");
+  const { title, image } = data.markdownRemark.frontmatter;
+  console.log(image);
   return (
     <Layout>
-      <h1>Post: {data.markdownRemark.frontmatter.title}</h1>
+      <h1>Post: {title}</h1>
       <p>This will probably look like blog-post.js</p>
+      <img src={image} /> ^ Not optimised
     </Layout>
   );
 };
@@ -26,7 +26,15 @@ export const query = graphql`
       id
       frontmatter {
         title
-        description
+        image
+        # no joy yet
+        # image {
+        #   childImageSharp {
+        #     fixed(width: 125, height: 125) {
+        #       ...GatsbyImageSharpSizes_tracedSVG
+        #     }
+        #   }
+        # }
       }
     }
   }
