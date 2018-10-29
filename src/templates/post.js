@@ -6,12 +6,17 @@ export default data => {
   // export default ({ location, data, id }) => {
   console.log("********************");
   console.log(data);
-  console.log(data.data);
-  console.log(data.data.markdownRemark.fields.imagePath);
+  console.log(data.data.markdownRemark.frontmatter);
+  // console.log(data.data.markdownRemark.fields.imagePath);
   console.log("********************");
   return (
     <>
-      <img src={data.data.markdownRemark.fields.imagePath} alt="" />
+      <img
+        src={
+          data.data.markdownRemark.frontmatter.image.childImageSharp.fluid.src
+        }
+        alt=""
+      />
       <p>i'm over it</p>
     </>
   );
@@ -34,20 +39,15 @@ export const query = graphql`
     markdownRemark(id: { eq: "31c8e190-22c2-5bc8-a8c6-4a6d5e4f5d13" }) {
       # markdownRemark(id: { eq: $id }) {
       id
-      fields {
-        # imagePath # raw
-        imagePath {
+      frontmatter {
+        title
+        image {
           childImageSharp {
-            fluid(maxWidth: 20, maxHeight: 20) {
-              ...GatsbyImageSharpFluid
+            fluid(maxWidth: 70) {
+              ...GatsbyImageSharpFluid # aspectRatio, base64, sizes, src, srcSet
             }
           }
         }
-      }
-      frontmatter {
-        title
-        # image
-        # can get image from frontmatter directly but not image processing
       }
     }
   }

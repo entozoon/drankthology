@@ -98,24 +98,24 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // to allow use of gatsby image processing plugins on frontmatter, a la
   // https://github.com/gatsbyjs/gatsby/issues/2995#issuecomment-408072399
   // UPDATE....
-  if (frontmatter) {
-    const { image } = frontmatter;
-    if (image) {
-      // const value = `../..${image}`;
-      // createNodeField({
-      //   node,
-      //   name: "imagePath",
-      //   value
-      // });
-      // .. BETTER YET spaff it so that you can use them straight from fm
-      // That said, it's node mutation which isn't the best way
-      // https://github.com/netlify/netlify-cms/issues/325#issuecomment-354514547
-      if (image.indexOf("/img") === 0) {
-        frontmatter.image = path.relative(
-          path.dirname(node.fileAbsolutePath),
-          path.join(__dirname, "/static/", image)
-        );
-      }
-    }
-  }
+  // if (frontmatter) {
+  //   const { image } = frontmatter;
+  //   if (image) {
+  //     // const value = `../..${image}`;
+  //     // createNodeField({
+  //     //   node,
+  //     //   name: "imagePath",
+  //     //   value
+  //     // });
+  //     // .. BETTER YET spaff it so that you can use them straight from fm
+  //     // That said, it's node mutation which isn't the best way
+  //     // https://github.com/netlify/netlify-cms/issues/325#issuecomment-354514547
+  //     if (image.indexOf("/img") === 0) {
+  //       frontmatter.image = path.relative(
+  //         path.dirname(node.fileAbsolutePath),
+  //         path.join(__dirname, "/static/", image)
+  //       );
+  //     }
+  //   }
+  // }
 };

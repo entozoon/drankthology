@@ -1,5 +1,13 @@
+// https://blog.rousek.name/2018/08/10/cool-image-loading-with-gatsbyjs-v2-and-netlify-cms-v2/
+var netlifyCmsPaths = {
+  resolve: `gatsby-plugin-netlify-cms-paths`,
+  options: {
+    cmsConfig: `/static/admin/config.yml`
+  }
+};
 // NB: Restart npm if adding new fields!
 module.exports = {
+  // netlifyCmsPaths,
   siteMetadata: {
     title: "Drankthology",
     otherStuff: "Static data can be chucked here"
@@ -37,7 +45,7 @@ module.exports = {
       // This transformer plugin converts it to useful objects
       resolve: "gatsby-transformer-remark",
       options: {
-        plugins: []
+        plugins: [netlifyCmsPaths]
       }
     },
     {

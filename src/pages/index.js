@@ -62,7 +62,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date(formatString: "Do MMM YYYY")
-            image
+            # image
             content
           }
         }
