@@ -1,3 +1,4 @@
+// Image transformation without node mutation, thanks to gatsby-plugin-netlify-cms-paths and
 // https://blog.rousek.name/2018/08/10/cool-image-loading-with-gatsbyjs-v2-and-netlify-cms-v2/
 var netlifyCmsPaths = {
   resolve: `gatsby-plugin-netlify-cms-paths`,

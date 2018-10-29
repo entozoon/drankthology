@@ -16,9 +16,12 @@ export default class IndexPage extends React.Component {
           const { id, excerpt } = post;
           const { slug } = post.fields;
           const { title, date, image } = post.frontmatter;
+          const imageResized = image.childImageSharp.fluid.src;
           return (
             <div className="content" key={id}>
-              I believe gatsby can crop and resize images, which will be useful
+              <img src={imageResized} alt="" />
+              Gatsby can crop and resize images, with blur, svg, etc which will
+              be useful
               {image && <img src={image} />}
               <p>
                 <Link className="has-text-primary" to={slug}>
@@ -64,6 +67,13 @@ export const pageQuery = graphql`
             date(formatString: "Do MMM YYYY")
             # image
             content
+            image {
+              childImageSharp {
+                fluid(maxWidth: 70) {
+                  ...GatsbyImageSharpFluid # aspectRatio, base64, sizes, src, srcSet
+                }
+              }
+            }
           }
         }
       }

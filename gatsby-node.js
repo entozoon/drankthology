@@ -83,7 +83,7 @@ exports.createPages = ({ actions, graphql }) => {
 // https://www.gatsbyjs.org/tutorial/part-seven/
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  const { frontmatter } = node;
+  // const { frontmatter } = node;
 
   if (node.internal.type === `MarkdownRemark`) {
     // Create a slug and add it to the markdownRemark nodes
@@ -94,28 +94,4 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value: slug
     });
   }
-  // If node has an image in the frontmatter, whip it out and give proper path
-  // to allow use of gatsby image processing plugins on frontmatter, a la
-  // https://github.com/gatsbyjs/gatsby/issues/2995#issuecomment-408072399
-  // UPDATE....
-  // if (frontmatter) {
-  //   const { image } = frontmatter;
-  //   if (image) {
-  //     // const value = `../..${image}`;
-  //     // createNodeField({
-  //     //   node,
-  //     //   name: "imagePath",
-  //     //   value
-  //     // });
-  //     // .. BETTER YET spaff it so that you can use them straight from fm
-  //     // That said, it's node mutation which isn't the best way
-  //     // https://github.com/netlify/netlify-cms/issues/325#issuecomment-354514547
-  //     if (image.indexOf("/img") === 0) {
-  //       frontmatter.image = path.relative(
-  //         path.dirname(node.fileAbsolutePath),
-  //         path.join(__dirname, "/static/", image)
-  //       );
-  //     }
-  //   }
-  // }
 };

@@ -34,10 +34,10 @@ export default data => {
 // The data returned by this query is injected into the components .data prop above
 export const query = graphql`
   # Not quite sure how it gets $id from gatsby-node but yeah
-  query {
-    # query($id: String) {
-    markdownRemark(id: { eq: "31c8e190-22c2-5bc8-a8c6-4a6d5e4f5d13" }) {
-      # markdownRemark(id: { eq: $id }) {
+  # query {
+  # markdownRemark(id: { eq: "31c8e190-22c2-5bc8-a8c6-4a6d5e4f5d13" }) {
+  query($id: String) {
+    markdownRemark(id: { eq: $id }) {
       id
       frontmatter {
         title
