@@ -26,7 +26,6 @@ export const query = graphql`
       id
       frontmatter {
         title
-        path
         description
       }
     }

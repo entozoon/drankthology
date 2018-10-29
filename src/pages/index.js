@@ -1,38 +1,42 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
+import Img from "gatsby-image";
 import Layout from "../components/Layout";
-import sugar from "../img/sugar.png";
+// import sugar from "../img/sugar.png";
+
 export default class IndexPage extends React.Component {
   render() {
     const { edges: posts } = this.props.data.allMarkdownRemark; // wat:some sick filtery thing?
 
     return (
       <Layout>
-        {posts.map(({ node: post }) => (
-          <div
-            className="content"
-            style={{ border: "1px solid #eaecee", padding: "2em 4em" }}
-            key={post.id}
-          >
-            I believe gatsby can crop and resize images, which will be useful
-            <img src={sugar} />
-            <p>
-              <Link className="has-text-primary" to={post.fields.slug}>
-                {post.frontmatter.title}
-              </Link>
-              <span> &bull; </span>
-              <small>{post.frontmatter.date}</small>
-            </p>
-            <p>
-              {post.excerpt}
-              <br />
-              <br />
-              <Link className="button is-small" to={post.fields.slug}>
-                Keep Reading →
-              </Link>
-            </p>
-          </div>
-        ))}
+        {posts.map(({ node: post }) => {
+          console.log(post);
+          const { id, excerpt } = post;
+          const { slug } = post.fields;
+          const { title, date, image } = post.frontmatter;
+          return (
+            <div className="content" key={id}>
+              I believe gatsby can crop and resize images, which will be useful
+              {image && <img src={image} />}
+              <p>
+                <Link className="has-text-primary" to={slug}>
+                  {title}
+                </Link>
+                <span> &bull; </span>
+                <small>{date}</small>
+              </p>
+              <p>
+                {excerpt}
+                <br />
+                <br />
+                <Link className="button is-small" to={slug}>
+                  Keep Reading →
+                </Link>
+              </p>
+            </div>
+          );
+        })}
       </Layout>
     );
   }
@@ -42,7 +46,7 @@ export const pageQuery = graphql`
     # All markdown items
     allMarkdownRemark(
       # Filter out those within /posts
-      filter: { fileAbsolutePath: { regex: "/posts/" } }
+      filter: { fileAbsolutePath: { regex: "/posts/" } } # glob: is also a thing
       # Sort by their frontmatter date values
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
@@ -56,12 +60,30 @@ export const pageQuery = graphql`
           # Tell it which things to grab from the md files
           frontmatter {
             title
-            content
-            templateKey
             date(formatString: "Do MMM YYYY")
+            image
+            content
           }
         }
       }
     }
   }
 `;
+// CAN'T FIGURE OUT IMAGE OPTIMISATION AT ALL, NOT FOR THIS LISTING PAGE ANYWAY
+// {
+//   allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/posts/"}}) {
+//     edges {
+//       node {
+//         frontmatter {
+//           image {
+//             childImageSharp {
+//               fixed(width: 125, height: 125) {
+//                 ...GatsbyImageSharpSizes_tracedSVG
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

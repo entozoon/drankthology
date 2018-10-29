@@ -12,15 +12,22 @@ module.exports = {
       // This source plugin builds in the data in a queryable way
       resolve: "gatsby-source-filesystem",
       options: {
-        path: `${__dirname}/src/pages`,
-        name: "pages"
+        name: "pages",
+        path: `${__dirname}/src/pages`
       }
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        path: `${__dirname}/src/img`,
-        name: "images"
+        name: "images",
+        path: `${__dirname}/src/img`
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "imagesStatic",
+        path: `${__dirname}/static/img`
       }
     },
     "gatsby-plugin-sharp",

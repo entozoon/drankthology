@@ -4,35 +4,31 @@ backend:
 media_folder: static/img
 public_folder: /img
 collections:
-  - name: "blog"
-    label: "Blog - don't use this"
-    folder: "src/pages/blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {
-          label: "Template Key",
-          name: "templateKey",
-          widget: "hidden",
-          default: "blog-post",
-        }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
+  # - name: "blog"
+  #   label: "Blog - don't use this"
+  #   folder: "src/pages/blog"
+  #   create: true
+  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  #   fields:
+  #     - {
+  #         label: "Template Key",
+  #         name: "templateKey",
+  #         widget: "hidden",
+  #         default: "blog-post",
+  #       }
+  #     - { label: "Title", name: "title", widget: "string" }
+  #     - { label: "Publish Date", name: "date", widget: "datetime" }
+  #     - { label: "Description", name: "description", widget: "text" }
+  #     - { label: "Body", name: "body", widget: "markdown" }
   - name: "pages"
     label: "Pages"
     files:
       - file: "src/pages/about/index.md"
+        # yikes, I need to figure out a typical page system
         label: "About"
         name: "about"
         fields:
-          - {
-              label: "Template Key",
-              name: "templateKey",
-              widget: "hidden",
-              default: "about-page",
-            }
+          # https://www.netlifycms.org/docs/widgets/#image
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
   - name: "posts"
@@ -41,6 +37,12 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - {
+          label: "Image",
+          name: "image",
+          widget: "image",
+          default: "\/img\/500x500.png",
+        }
       - { label: "Content", name: "content", widget: "markdown" }
