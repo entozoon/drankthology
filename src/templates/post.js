@@ -2,33 +2,18 @@ import React from "react";
 import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 
-export default data => {
-  // export default ({ location, data, id }) => {
-  console.log("********************");
-  console.log(data);
-  console.log(data.data.markdownRemark.frontmatter);
-  // console.log(data.data.markdownRemark.fields.imagePath);
-  console.log("********************");
+// export default data => {
+export default ({ location, data, id }) => {
+  const { frontmatter } = data.markdownRemark;
+  const { title } = frontmatter;
+  const image = frontmatter.image.childImageSharp.fluid.src;
+  // There's gotta be a better way to winkle stuff out, oh my days
   return (
-    <>
-      <img
-        src={
-          data.data.markdownRemark.frontmatter.image.childImageSharp.fluid.src
-        }
-        alt=""
-      />
-      <p>i'm over it</p>
-    </>
+    <Layout>
+      <img src={image} alt="" />
+      <h1>{title}</h1>
+    </Layout>
   );
-  // const { title, image } = data.markdownRemark.frontmatter;
-  // console.log(image);
-  // return (
-  //   <Layout>
-  //     <h1>Post: {title}</h1>
-  //     <p>This will probably look like blog-post.js</p>
-  //     <img src={image} alt="" /> ^ Not optimised
-  //   </Layout>
-  // );
 };
 
 // The data returned by this query is injected into the components .data prop above
