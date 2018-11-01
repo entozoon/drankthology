@@ -1,8 +1,8 @@
 import React from "react";
-import { PostTemplate } from "../../templates/post";
+import { ArticleTemplate } from "../../templates/article";
 
 export default ({ entry, widgetFor }) => (
-  <PostTemplate
+  <ArticleTemplate
     title={entry.getIn(["data", "title"])}
     content={widgetFor("body")}
   />

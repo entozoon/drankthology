@@ -31,13 +31,15 @@ exports.createPages = ({ actions, graphql }) => {
         console.log("*************** gatsby-node ******************");
         console.log(id);
         //
-        // Post pages
-        // If slug begins with '/posts/' then use psot.js
-        if (edge.node.fields.slug.slice(0, "/posts/".length) === "/posts/") {
+        // article pages
+        // If slug begins with '/articles/' then use article.js
+        if (
+          edge.node.fields.slug.slice(0, "/articles/".length) === "/articles/"
+        ) {
           createPage({
             path: edge.node.fields.slug,
             component: path.resolve(
-              `src/templates/post.js`
+              `src/templates/article.js`
               // Original technique with fm keys, but.. I don't like it:
               // `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
             ),
@@ -53,8 +55,8 @@ exports.createPages = ({ actions, graphql }) => {
 
       // Tag pages:
       // let tags = [];
-      // // Iterate through each post, putting all found tags into `tags`
-      // posts.forEach(edge => {
+      // // Iterate through each article, putting all found tags into `tags`
+      // articles.forEach(edge => {
       //   if (_.get(edge, `node.frontmatter.tags`)) {
       //     tags = tags.concat(edge.node.frontmatter.tags);
       //   }

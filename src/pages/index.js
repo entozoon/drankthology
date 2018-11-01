@@ -6,16 +6,17 @@ import Layout from "../components/Layout";
 
 export default class IndexPage extends React.Component {
   render() {
-    const { edges: posts } = this.props.data.allMarkdownRemark; // wat:some sick filtery thing?
+    console.log(this.props.data);
+    const { edges: articles } = this.props.data.allMarkdownRemark; // wat:some sick filtery thing?
 
     return (
       <Layout>
-        {posts.map(({ node: post }) => {
-          console.log(post);
+        {articles.map(({ node: article }) => {
+          console.log(article);
           // this is vile, rewrite it as an component, come on
-          const { id, excerpt } = post;
-          const { slug } = post.fields;
-          const { title, date, image } = post.frontmatter;
+          const { id, excerpt } = article;
+          const { slug } = article.fields;
+          const { title, date, image } = article.frontmatter;
           const imageResized = image.childImageSharp.fluid.src;
           return (
             <div className="content" key={id}>
@@ -48,8 +49,8 @@ export const pageQuery = graphql`
   query IndexQuery {
     # All markdown items
     allMarkdownRemark(
-      # Filter out those within /posts
-      filter: { fileAbsolutePath: { regex: "/posts/" } } # glob: is also a thing
+      # Filter out those within /articles
+      filter: { fileAbsolutePath: { regex: "/articles/" } } # glob: is also a thing
       # Sort by their frontmatter date values
       sort: { order: DESC, fields: [frontmatter___date] }
     ) {
@@ -81,7 +82,7 @@ export const pageQuery = graphql`
 `;
 // CAN'T FIGURE OUT IMAGE OPTIMISATION AT ALL, NOT FOR THIS LISTING PAGE ANYWAY
 // {
-//   allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/posts/"}}) {
+//   allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/articles/"}}) {
 //     edges {
 //       node {
 //         frontmatter {

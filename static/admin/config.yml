@@ -14,7 +14,7 @@ collections:
   #         label: "Template Key",
   #         name: "templateKey",
   #         widget: "hidden",
-  #         default: "blog-post",
+  #         default: "blog-article",
   #       }
   #     - { label: "Title", name: "title", widget: "string" }
   #     - { label: "Publish Date", name: "date", widget: "datetime" }
@@ -31,9 +31,9 @@ collections:
           # https://www.netlifycms.org/docs/widgets/#image
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
-  - name: "posts"
-    label: "Posts"
-    folder: "src/pages/posts"
+  - name: "articles"
+    label: "Articles"
+    folder: "src/pages/articles"
     create: true
     slug: "{{slug}}"
     fields:
