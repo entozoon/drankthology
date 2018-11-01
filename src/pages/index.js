@@ -22,7 +22,6 @@ export default class IndexPage extends React.Component {
               <img src={imageResized} alt="" />
               Gatsby can crop and resize images, with blur, svg, etc which will
               be useful
-              {image && <img src={image} />}
               <p>
                 <Link className="has-text-primary" to={slug}>
                   {title}

@@ -7,7 +7,7 @@ const Navbar = () => (
       <figure className="image" />
     </Link>
     <Link to="/about">About</Link>
-    <Link to="/contact">About</Link>
+    <Link to="/contact">Contact</Link>
   </nav>
 );
 

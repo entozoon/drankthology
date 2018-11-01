@@ -1,3 +1,3 @@
 import React from "react";
 
-export default () => <footer>footer jank</footer>;
+export default () => <footer>Footer jank</footer>;

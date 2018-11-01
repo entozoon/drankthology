@@ -10,7 +10,7 @@ var netlifyCmsPaths = {
 module.exports = {
   // netlifyCmsPaths,
   siteMetadata: {
-    title: "Drankthology",
+    title: "Site Name",
     otherStuff: "Static data can be chucked here"
   },
   plugins: [
