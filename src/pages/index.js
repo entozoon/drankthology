@@ -6,8 +6,10 @@ import Layout from "../components/Layout";
 
 export default class IndexPage extends React.Component {
   render() {
-    console.log(this.props.data);
-    const { edges: articles } = this.props.data.allMarkdownRemark; // wat:some sick filtery thing?
+    // console.log(this.props.data.allMarkdownRemark);
+    const { edges: articles } = this.props.data.allMarkdownRemark;
+    // TO DO: Sack all of this off, I mean..
+    // http://teeohhem.com/why-destructuring-is-a-terrible-idea-in-es6/
 
     return (
       <Layout>
@@ -17,10 +19,9 @@ export default class IndexPage extends React.Component {
           const { id, excerpt } = article;
           const { slug } = article.fields;
           const { title, date, image } = article.frontmatter;
-          const imageResized = image.childImageSharp.fluid.src;
           return (
             <div className="content" key={id}>
-              <img src={imageResized} alt="" />
+              <Img sizes={image.childImageSharp.sizes} />
               Gatsby can crop and resize images, with blur, svg, etc which will
               be useful
               <p>
@@ -69,8 +70,14 @@ export const pageQuery = graphql`
             content
             image {
               childImageSharp {
-                fluid(maxWidth: 70) {
-                  ...GatsbyImageSharpFluid # aspectRatio, base64, sizes, src, srcSet
+                # Standard
+                # fluid(maxWidth: 200) {
+                #   ...GatsbyImageSharpFluid # aspectRatio, base64, sizes, src, srcSet
+                # }
+                sizes(maxWidth: 400) {
+                  # Fragments here https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#fragments
+                  # Note, built-in fragments like this don't work in GraphiQl
+                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
                 }
               }
             }
@@ -80,21 +87,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-// CAN'T FIGURE OUT IMAGE OPTIMISATION AT ALL, NOT FOR THIS LISTING PAGE ANYWAY
-// {
-//   allMarkdownRemark(filter: {fileAbsolutePath: {regex: "/articles/"}}) {
-//     edges {
-//       node {
-//         frontmatter {
-//           image {
-//             childImageSharp {
-//               fixed(width: 125, height: 125) {
-//                 ...GatsbyImageSharpSizes_tracedSVG
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
